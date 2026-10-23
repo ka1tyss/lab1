@@ -27,17 +27,25 @@ JsonProperty (опис метаданих властивостей під час
 Внутрішній стан закритий від прямого модифікування (використовуються приватні поля та поля з модифікатором private readonly або internal).
 
 // Приклад інкапсуляції полів у JsonTextReader
+
 private readonly TextReader _reader;
+
 private char[] _chars;
+
 private int _charsUsed;
+
 private int _charPos;
+
 
 Властивості:
 Клас широко використовує властивості для контрольованого читання стану (тільки для читання get без set або з прихованим set). Наприклад, властивість TokenType дозволяє отримати поточний тип токена, але її не можна встановити ззовні.
 
 // Приклад властивості тільки для читання або з приватним/захищеним доступом
+
 public override JsonToken TokenType { get; protected set; }
+
 public override object Value { get; protected set; }
+
 
 Індексатори/Оператори:
 У цьому класі індексатори не використовуються, оскільки він орієнтується на потокове читання (Stream/TextReader), а не на довільний доступ за індексом.
@@ -52,9 +60,13 @@ public override object Value { get; protected set; }
 Активно використовуються стандартні автоматичні властивості (auto-properties) для простих даних, а також властивості з повною реалізацією (з логікою у get/set), якщо потрібно змінювати внутрішні прапорці чи кешовані значення.
 
 // Приклад автоматичних та налаштовуваних властивостей у JsonProperty
+
 public string PropertyName { get; set; }
+
 public Type PropertyType { get; set; }
+
 public bool Ignored { get; set; }
+
 
 3. Практики валідації у властивостях
 
@@ -66,7 +78,9 @@ public bool Ignored { get; set; }
 
 
 // Фрагмент прикладу валідації у сеттерах або методах ініціалізації
+
 public int LineNumber
+
 {
     get => _lineNumber;
     set
@@ -84,7 +98,9 @@ public int LineNumber
 Під час налаштування середовища серіалізації або передачі обов'язкових об'єктів конфігурації використовується стандартна перевірка ArgumentNullException.
 
 // Фрагмент прикладу валідації посилань
+
 public void SetValue(object target, object value)
+
 {
     if (target == null)
     {
